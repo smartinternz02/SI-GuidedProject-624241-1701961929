@@ -1,0 +1,19 @@
+@isTest
+public class TestRestrictContactByName {
+static testMethod void  Test() {
+        List<Contact> con= new List<Contact>();
+        Contact c1 = new Contact(FirstName='Ram', LastName='Sharma' , email='ramsharma@mail.com');
+        Contact c2 = new Contact(FirstName='Ramesh', LastName = 'INVALIDNAME',email='Ramesh@mail.com');
+        con.add(c1);
+        con.add(c2);
+        Test.startTest();
+            try{
+                insert con;
+            }
+            catch(Exception ee)
+            {
+            }
+        
+        Test.stopTest();
+    }
+}

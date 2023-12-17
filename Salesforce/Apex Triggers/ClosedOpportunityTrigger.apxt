@@ -1,0 +1,9 @@
+trigger ClosedOpportunityTrigger on Opportunity (after insert,after update) {
+    list<Task> T= new list<Task>();
+        for(Opportunity opp :[Select Id from Opportunity where StageName='Closed Won'and Id in: Trigger.new]){
+            T.add(new Task (Subject ='Follow Up Test Task',WhatId=opp.Id));
+        }
+        if(T.size()>0){
+            upsert T;
+        }
+}
